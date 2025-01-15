@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - main
-      - 'releases/**' # Filters to run only when a push to a branch that matches the branches filter occurs
-    branches-ignore:
-     - dev
+    #   - 'releases/**' # Filters to run only when a push to a branch that matches the branches filter occurs
+    # branches-ignore:
+    #  - dev
 
   label:
     types:
