@@ -20,7 +20,7 @@ jobs:
         python-version: 3.9
 
     - name: Install dependencies
-      run: pip install -r Labs/Github_Labs/Lab2/requirements.txt
+      run: pip install -r mlopslab1/Lab2/requirements.txt
 
     - name: Generate and Store Timestamp
       run: |
