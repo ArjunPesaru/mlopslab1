@@ -20,7 +20,7 @@ jobs:
         python-version: 3.9
 
     - name: Install dependencies
-      run: pip install -r mlopslab1/Lab2/requirements.txt
+      run: pip install -r Lab2/requirements.txt
 
     - name: Generate and Store Timestamp
       run: |
@@ -30,36 +30,36 @@ jobs:
 
     - name: Check File Permissions
       run: |
-        ls -l Labs/Github_Labs/Lab2/src/train_model.py
+        ls -l Lab2/src/train_model.py
 
     - name: Set File Permissions
       run: |
-        chmod +x Labs/Github_Labs/Lab2/src/train_model.py
+        chmod +x Lab2/src/train_model.py
 
     - name: Retrain Model
       run: |
         timestamp=$(cat timestamp.txt) # Use the timestamp in your training script
-        python Labs/Github_Labs/Lab2/src/train_model.py --timestamp "$timestamp"
+        python Lab2/src/train_model.py --timestamp "$timestamp"
 
     - name: Evaluate Model and Log Metrics
       run: |
         timestamp=$(cat timestamp.txt) # Use the timestamp in your training script
-        python Labs/Github_Labs/Lab2/src/evaluate_model.py  --timestamp "$timestamp" # Assuming you have a script for model evaluation
+        python Lab2/src/evaluate_model.py  --timestamp "$timestamp" # Assuming you have a script for model evaluation
         metrics_filename="${timestamp}_metrics.json"
-        mv $metrics_filename Labs/Github_Labs/Lab2/metrics/$metrics_filename
+        mv $metrics_filename Lab2/metrics/$metrics_filename
       continue-on-error: false  # Continue even if evaluation fails
 
     - name: Store and Version the New Model
       run: |
         timestamp=$(cat timestamp.txt)
         model_filename="model_${timestamp}_dt_model.joblib"
-        mv $model_filename Labs/Github_Labs/Lab2/models/$model_filename
+        mv $model_filename Lab2/models/$model_filename
 
     - name: Commit and Push Changes
       run: |
-        git config --global user.email "26876927+raminmohammadi@users.noreply.github.com"
-        git config --global user.name "raminmohammadi"
-        git add Labs/Github_Labs/Lab2/metrics/$metrics_filename Labs/Github_Labs/Lab2/models/$model_filename
+        git config --global user.email "127749131+ArjunPesaru@users.noreply.github.com"
+        git config --global user.name "ArjunPesaru"
+        git add Lab2/metrics/$metrics_filename Labs/Github_Labs/Lab2/models/$model_filename
         git commit -m "Add metrics and updated model"
         git push
       env:
